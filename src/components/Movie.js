@@ -1,10 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Movie.css";
+import { useNavigate } from "react-router-dom";
 
-function Movie({ year, title, summary, poster, genres }) {
+function Movie({ id, year, title, summary, poster, genres }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/movie/${id}`, {
+      state: { year, title, summary, poster, genres },
+    });
+  };
+
   return (
-    <div className="movie">
+    <div className="movie" onClick={handleClick}>
       <img src={poster} alt={title} title={title} />
       <div className="movie__data">
         <h3 className="movie__title">{title}</h3>
